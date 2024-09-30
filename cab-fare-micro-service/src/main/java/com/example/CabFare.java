@@ -56,5 +56,4 @@ public class CabFare {
         this.amount = amount;
     }
 
-    // Getters and Setters
 }
