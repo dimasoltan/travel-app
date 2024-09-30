@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cab Booking</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 2em;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        label {
+            font-size: 1.1em;
+            color: #555;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        button {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .message {
+            color: #078faf;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .error {
+            color: #d9534f;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <a href="/">< Back</a>
+    <h1>Book a Cab</h1>
+
+    <form action="/book" method="post">
+        <label for="email">Email ID:</label>
+        <input type="email" id="email" name="emailId" required>
+
+        <label for="from">From Location:</label>
+        <input type="text" id="from" name="fromLocation" required>
+
+        <label for="to">To Location:</label>
+        <input type="text" id="to" name="toLocation" required>
+
+        <label for="cabType">Type of Cab:</label>
+        <input type="text" id="cabType" name="typeOfCab" required>
+
+        <button type="submit">Book Cab</button>
+
+        <div class="message" th:if="${message != null}">
+            <span th:text="${message}"></span>
+        </div>
+
+        <div class="error" th:if="${error != null}">
+            <span th:text="${error}"></span>
+        </div>
+    </form>
+</div>
+</body>
+</html>

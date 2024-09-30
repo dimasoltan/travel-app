@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculate Cab Fare</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+
+        form {
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        label {
+            font-size: 1.1em;
+            color: #555;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        button {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .result {
+            margin-top: 20px;
+        }
+
+        .fare-amount {
+            color: #333;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .no-fare {
+            color: #d9534f;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <a href="/">< Back</a>
+    <h1>Calculate Cab Fare</h1>
+
+    <form action="/cabfare" method="post">
+        <label for="from">From:</label>
+        <input type="text" id="from" name="fromLocation" required>
+
+        <label for="to">To:</label>
+        <input type="text" id="to" name="toLocation" required>
+
+        <label for="cabType">Type of Cab:</label>
+        <input type="text" id="cabType" name="typeOfCab" required>
+
+        <button type="submit">Get Fare</button>
+    </form>
+
+    <div class="result" th:if="${showFare!=null && showFare && fare != null}">
+        <h3>Fare Amount: <span class="fare-amount" th:text="${fare}"></span></h3>
+    </div>
+
+    <div class="result no-fare" th:if="${showFare!=null && showFare && fare == null}">
+        <p>No cab available for the selected route and type.</p>
+    </div>
+</div>
+</body>
+</html>
